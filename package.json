@@ -1,0 +1,19 @@
+{
+  "name": "video-renamer",
+  "version": "1.0.0",
+  "description": "Video Renamer Utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimCulleton/video-renamer.git"
+  },
+  "author": "Tim Culleton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TimCulleton/video-renamer/issues"
+  },
+  "homepage": "https://github.com/TimCulleton/video-renamer#readme"
+}
