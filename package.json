@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/TimCulleton/video-renamer/issues"
   },
-  "homepage": "https://github.com/TimCulleton/video-renamer#readme"
+  "homepage": "https://github.com/TimCulleton/video-renamer#readme",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/jest": "^24.0.16",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "electron": "^6.0.0"
+  }
 }
