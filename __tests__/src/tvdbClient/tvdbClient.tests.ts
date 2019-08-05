@@ -40,4 +40,16 @@ describe(`TVDB Client Tests`, () => {
 
         expect(data).toBeTruthy();
     });
+
+    it(`Get Episodes for show`, async () => {
+        const tvdbClient = new TvDBClient({
+            apiKey: ``,
+        });
+
+        const data = await tvdbClient.seriesEpisodes({
+            id: 81797,
+        }, authToken);
+
+        expect(data).toBeTruthy();
+    });
 });

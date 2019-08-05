@@ -43,6 +43,7 @@ export interface ISearchSeriesData {
 
 export interface ISeriesEpisodesRequest {
     id: number;
+    page?: number;
 }
 
 export interface ISeriesEpisodesResponseData {

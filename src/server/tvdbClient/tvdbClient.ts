@@ -81,6 +81,29 @@ export class TvDBClient {
         }
     }
 
+    public async seriesEpisodes(episodesConfig: tvdbTypes.ISeriesEpisodesRequest, token: string): Promise<tvdbTypes.ISearchSeriesResponse> {
+        const params = episodesConfig.page
+            ? `?page=${episodesConfig.page}`
+            : "";
+        const path = EndPoint.SeriesEpisodes.replace(/{id}/, episodesConfig.id.toString()) + params;
+
+        const responseData = await this._requester({
+            method: "GET",
+            endpoint: encodeURI(path),
+            authToken: token,
+        });
+
+        const statusCode = responseData.response.statusCode;
+        if (statusCode === 200) {
+            return JSON.parse(responseData.data);
+            // Returned when invalid apikey is supplied
+        } else if (statusCode === 401) {
+            throw new Error(JSON.parse(responseData.data).Error);
+        } else {
+            throw responseData;
+        }
+    }
+
     private async _requester(config: IRequesterConfig): Promise<IRequestData> {
         const reqOptions: https.RequestOptions = {
             hostname: ROOT_END_POINT,
