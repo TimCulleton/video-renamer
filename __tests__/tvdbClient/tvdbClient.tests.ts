@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 import https from "https";
-import { TvDBClient } from "../../../src/server/tvdbClient/tvdbClient";
-import * as TvDBTypes from "../../../src/server/tvdbClient/tvdbTypes";
+import { TvDBClient } from "../../src/server/tvdbClient/tvdbClient";
+import * as TvDBTypes from "../../src/server/tvdbClient/tvdbTypes";
 import * as TestData from "./testData";
 
 describe(`TVDB Client Tests`, () => {

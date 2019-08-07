@@ -1,4 +1,4 @@
-import * as TvDBTypes from "../../../src/server/tvdbClient/tvdbTypes";
+import * as TvDBTypes from "../../src/server/tvdbClient/tvdbTypes";
 
 // tslint:disable: max-line-length
 
