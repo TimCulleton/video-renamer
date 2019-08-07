@@ -43,6 +43,7 @@ export interface ISearchSeriesData {
 
 export interface ISeriesEpisodesRequest {
     id: number;
+    page?: number;
 }
 
 export interface ISeriesEpisodesResponseData {
@@ -53,8 +54,8 @@ export interface ISeriesEpisodesResponseData {
 export interface IPaginatedData {
     first: number;
     last: number;
-    next: number;
-    prev: number;
+    next: number | null;
+    prev: number | null;
 }
 
 export interface IEpisodeData {
@@ -68,7 +69,7 @@ export interface IEpisodeData {
     director: string;
     directors: string[];
     writers: string[];
-    overview: string;
+    overview: string | null;
     language: IEpisodeLanguage;
     productionCode: string;
     showUrl: string;
@@ -81,15 +82,15 @@ export interface IEpisodeData {
     filename: string;
     seriesId: number;
     lastUpdatedBy: number;
-    airsAfterSeason: string;
-    airsBeforeSeason: string;
-    airsBeforeEpisode: string;
+    airsAfterSeason: string | null;
+    airsBeforeSeason: string | null;
+    airsBeforeEpisode: string | null;
     thumbAuthor: number;
     thumbAdded: string;
-    thumbWidth: string;
-    thumbHeight: string;
+    thumbWidth: string | null;
+    thumbHeight: string | null;
     imdbId: string;
-    siteRating: string;
+    siteRating: number;
     siteRatingCount: number;
 }
 
