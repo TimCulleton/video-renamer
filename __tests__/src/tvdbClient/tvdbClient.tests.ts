@@ -2,11 +2,12 @@ import EventEmitter from "events";
 import https from "https";
 import { TvDBClient } from "../../../src/server/tvdbClient/tvdbClient";
 import * as TvDBTypes from "../../../src/server/tvdbClient/tvdbTypes";
+import * as TestData from "./testData";
 
 describe(`TVDB Client Tests`, () => {
 
     let authToken: string;
-    const useServiceMock = true;
+    const useServiceMock = false;
     const API_KEY = `217570E2EAD13858`;
 
     it(`Login to tvdbAPI valid apiKey`, async () => {
@@ -78,29 +79,62 @@ describe(`TVDB Client Tests`, () => {
 
     });
 
-    xit(`Search Series One Piece`, async () => {
+    it(`Search Series One Piece`, async () => {
+
         const tvdbClient = new TvDBClient({
             apiKey: ``,
         });
 
-        const data = await tvdbClient.searchSeries({
-            name: "One Piece",
-        },
-            authToken);
+        if (mockServiceCall) {
+            mockServiceCall({
+                statusCode: 200,
+                responseData: JSON.stringify(TestData.onePieceSeriesData),
+            });
 
-        expect(data).toBeTruthy();
+            const responseData = await tvdbClient.searchSeries({
+                name: "One Piece",
+            }, authToken);
+
+            expect(responseData).toBeTruthy();
+            const onePieceExists = responseData.data.some(series => series.id === TestData.onePieceId);
+            expect(onePieceExists).toBeTruthy();
+        } else {
+            const responseData = await tvdbClient.searchSeries({
+                name: "One Piece",
+            }, authToken);
+
+            expect(responseData).toBeTruthy();
+            const onePieceExists = responseData.data.some(series => series.id === TestData.onePieceId);
+            expect(onePieceExists).toBeTruthy();
+        }
     });
 
-    xit(`Get Episodes for show`, async () => {
+    it(`Get Episodes for fire force series`, async () => {
         const tvdbClient = new TvDBClient({
             apiKey: ``,
         });
 
-        const data = await tvdbClient.seriesEpisodes({
-            id: 81797,
-        }, authToken);
+        if (mockServiceCall) {
+            mockServiceCall({
+                statusCode: 200,
+                responseData: JSON.stringify(TestData.fireForceEpisodes),
+            });
 
-        expect(data).toBeTruthy();
+            const responseData = await tvdbClient.seriesEpisodes({
+                id: TestData.fireforceId,
+            }, authToken);
+
+            expect(responseData).toBeTruthy();
+            expect(responseData.data.length).toBeTruthy();
+
+        } else {
+            const responseData = await tvdbClient.seriesEpisodes({
+                id: TestData.fireforceId,
+            }, authToken);
+
+            expect(responseData).toBeTruthy();
+            expect(responseData.data.length).toBeTruthy();
+        }
     });
 });
 
